@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="bishodroid.com.gymapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.Splash"
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.Login"
+            android:label="Login" />
+        <activity
+            android:name=".activity.Signup"
+            android:label="Signup" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="Home"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".activity.Profile"
+            android:label="Profile" />
+        <activity
+            android:name=".activity.Workouts"
+            android:label="Workouts" />
+        <activity
+            android:name=".activity.WorkoutList"
+            android:label="Workouts list" />
+        <activity android:name="com.flipkart.youtubeview.activity.YouTubeActivity" />
+        <activity
+            android:name=".activity.Meals"
+            android:label="Meals" />
+        <activity
+            android:name=".activity.MealDetails"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".activity.Music"
+            android:label="Music" />
+        <activity android:name=".activity.Cardio" />
+        <activity android:name=".activity.Calendar"></activity>
+    </application>
+
+</manifest>

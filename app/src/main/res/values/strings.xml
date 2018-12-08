@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">M-Health</string>
+
+
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="chest_workouts_names">
+        <item>Bench Press</item>
+        <item>Incline Bench Press</item>
+    </string-array>
+    <string-array name="chest_workout_values">
+        <item>gRVjAtPip0Y</item>
+        <item>jPLdzuHckI8</item>
+    </string-array>
+
+    <string-array name="back_workout_names">
+        <item>Dead Lift</item>
+        <item>Seated Low Row</item>
+    </string-array>
+    <string-array name="back_workout_values">
+        <item>4qRntuXBSc</item>
+        <item>GZbfZ033f74</item>
+    </string-array>
+
+    <string-array name="shoulders_workout_names">
+        <item>Dumbbell Shoulder Press</item>
+        <item>Overhead Press</item>
+    </string-array>
+    <string-array name="shoulders_workout_values">
+        <item>qEwKCR5JCog</item>
+        <item>2yjwXTZQDDI</item>
+    </string-array>
+
+    <string-array name="abs_workout_names">
+        <item>Abs Circuit 1</item>
+        <item>Abs Circuit 2</item>
+    </string-array>
+    <string-array name="abs_workout_values">
+        <item>Mpu8MrUd3c8</item>
+        <item>RRuEw52q9gA</item>
+    </string-array>
+
+    <string-array name="legs_workout_names">
+        <item>Leg Press</item>
+        <item>Leg Extension</item>
+    </string-array>
+    <string-array name="legs_workout_values">
+        <item>oujca3_Shgw</item>
+        <item>YyvSfVjQeL0</item>
+    </string-array>
+
+    <string-array name="arms_workout_names">
+        <item>Tricep Pushdown</item>
+        <item>Skull Crushers</item>
+        <item>Dumbbell Hammer Curl</item>
+        <item>Arm Curl</item>
+    </string-array>
+    <string-array name="arms_workout_values">
+        <item>LAMcpzODU</item>
+        <item>d_KZxkY_0cM</item>
+        <item>zC3nLlEvin4</item>
+        <item>M_uPvGrMx_o</item>
+    </string-array>
+</resources>
