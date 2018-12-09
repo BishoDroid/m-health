@@ -37,7 +37,8 @@
             android:label="Profile" />
         <activity
             android:name=".activity.Workouts"
-            android:label="Workouts" />
+            android:label="Workouts"
+            android:theme="@style/FullScreen"/>
         <activity
             android:name=".activity.WorkoutList"
             android:label="Workouts list" />
@@ -52,7 +53,8 @@
             android:name=".activity.Music"
             android:label="Music" />
         <activity android:name=".activity.Cardio" />
-        <activity android:name=".activity.Calendar"></activity>
+        <activity android:name=".activity.Calendar" />
+        <activity android:name=".activity.MyWorkouts"/>
     </application>
 
 </manifest>

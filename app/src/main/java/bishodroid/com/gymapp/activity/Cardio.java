@@ -26,9 +26,12 @@ public class Cardio extends AppCompatActivity {
 
         //TODO get cardios from db based on category
         cardios = new ArrayList<>();
-        cardios.add(new Workout("Bench press", "3AtDnEC4zak", "cardio"));
-        cardios.add(new Workout("Incline bench press", "3AtDnEC4zak", "cardio"));
-        cardios.add(new Workout("Push up", "3AtDnEC4zak", "cardio"));
+
+        String[] cardioNames = getResources().getStringArray(R.array.cardio_names);
+        String[] cardioValues = getResources().getStringArray(R.array.cardio_values);
+        for(int i=0; i< cardioNames.length; i++){
+            cardios.add(new Workout(cardioNames[i], cardioValues[i], "cardio"));
+        }
 
         list = findViewById(R.id.cardio_list);
         WorkoutListAdapter adapter = new WorkoutListAdapter(this, cardios);

@@ -191,17 +191,11 @@ public class DBAccess {
         return res >= 1 ? "OK" : "NOT_OK";
     }
 
-    public String markWorkoutAsDone(Workout workout){
-        ContentValues values = new ContentValues();
-        values.put("done", String.valueOf(workout.isDone()));
-        long res = db.update("workouts", values, "userId="+workout.getUserId(), null);
-        return res >= 1 ? "OK" : "NOT_OK";
-    }
 
     public List<Workout> getWorkoutsWithDate(String date, long userId){
         List<Workout> list = new ArrayList<>();
-        String[] data = date != null ? new String[]{date, String.valueOf(userId)} : null;
-        Cursor c = db.rawQuery(date != null ? GET_WORKOUT_WITH_DATE : GET_WORKOUT_FOR_USER, data);
+        String[] data = {date, String.valueOf(userId)};
+        Cursor c = db.rawQuery(GET_WORKOUT_WITH_DATE , data);
         c.moveToFirst();
         Workout workout;
         while(c.moveToNext()){
@@ -218,16 +212,37 @@ public class DBAccess {
         return list;
     }
 
+    public List<Workout> getWorkouts(long userId){
+        List<Workout> list = new ArrayList<>();
+        String[] data = {String.valueOf(userId)};
+        Cursor c = db.rawQuery(GET_WORKOUT_FOR_USER, data);
+        c.moveToFirst();
+        Workout workout;
+        while(c.moveToNext()){
+            Log.d("DB", c.toString());
+            workout = new Workout();
+            workout.setTitle(c.getString(1));
+            workout.setCategory(c.getString(2));
+            workout.setVideoUrl(c.getString(3));
+            workout.setDate(c.getString(4));
+            workout.setDone("true".equalsIgnoreCase(c.getString(5)));
+            workout.setUserId(c.getInt(6));
+            list.add(workout);
+        }
+        return list;
+    }
 
-    public String addWorkout(Workout workout){
+
+    public String addWorkout(Workout workout, long userId){
         ContentValues values = new ContentValues();
         values.put("title", workout.getTitle());
         values.put("category",workout.getCategory());
         values.put("video", workout.getVideoUrl());
         values.put("date", workout.getDate());
         values.put("done",workout.isDone());
-        values.put("user_id",workout.getUserId());
+        values.put("user_id",userId);
         long res = db.insert("workouts",null, values);
+        Log.d("ADD_WORKOUT", String.valueOf(res));
         return res >= 1 ? "OK" : "NOT_OK";
     }
 }

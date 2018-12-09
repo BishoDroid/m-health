@@ -3,6 +3,7 @@ package bishodroid.com.gymapp.adapter;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import java.util.List;
 import bishodroid.com.gymapp.R;
 import bishodroid.com.gymapp.db.DBAccess;
 import bishodroid.com.gymapp.model.Workout;
+import bishodroid.com.gymapp.util.AppSettings;
 import bishodroid.com.gymapp.util.Constants;
 
 public class WorkoutListAdapter extends BaseAdapter{
@@ -28,11 +30,13 @@ public class WorkoutListAdapter extends BaseAdapter{
     private List<Workout> workouts;
     private Context context;
     private DBAccess db;
+    private AppSettings settings;
 
     public WorkoutListAdapter(Context context, List<Workout> workouts) {
         this.context = context;
         this.workouts = workouts;
         this.db = DBAccess.getInstance(context.getApplicationContext());
+        settings = AppSettings.getInstance(context.getApplicationContext());
     }
 
     @Override
@@ -79,8 +83,10 @@ public class WorkoutListAdapter extends BaseAdapter{
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             db.open();
-                            workout.setDate(dayOfMonth+"/"+month+"/"+year);
-                            db.addWorkout(workout);
+                            month+=1;
+                            workout.setDate(dayOfMonth+"/"+month +"/"+year);
+                            String status = db.addWorkout(workout, settings.getId());
+                            Log.d("ADD_WORKOUT", status);
                             db.close();
                             Toast.makeText(context, "Added "+workout.getTitle()+" to your workouts",Toast.LENGTH_LONG).show();
                         }

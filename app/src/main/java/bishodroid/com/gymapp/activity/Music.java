@@ -1,9 +1,16 @@
 package bishodroid.com.gymapp.activity;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
@@ -26,6 +33,30 @@ public class Music extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
+
+        //Check if the app has permission to read storage
+         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                 PackageManager.PERMISSION_GRANTED) {
+
+                 AlertDialog.Builder dialog= new AlertDialog.Builder(this);
+                 dialog.setMessage("You need to grant  the app permission to read your storage");
+                 dialog.setTitle("Permission required");
+                 dialog.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+                         dialog.dismiss();
+                         ActivityCompat.requestPermissions(Music.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+                     }
+                 });
+                 dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+                         dialog.dismiss();
+                         startActivity(new Intent(Music.this, MainActivity.class));
+                     }
+                 });
+                 dialog.create().show();
+         }
 
         Cursor c = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, proj,
                 MediaStore.Audio.Media.IS_MUSIC + " != 0", null, null);

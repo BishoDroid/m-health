@@ -12,16 +12,12 @@ import bishodroid.com.gymapp.R;
 
 public class Workouts extends AppCompatActivity implements View.OnClickListener{
 
-    private Button track;
     private ImageView chest, back, shoulders, sixpack, legs, arms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workouts);
-
-        track = findViewById(R.id.workouts_view_current);
-        track.setOnClickListener(this);
 
         chest = findViewById(R.id.workouts_chest);
         chest.setOnClickListener(this);
@@ -65,9 +61,6 @@ public class Workouts extends AppCompatActivity implements View.OnClickListener{
             case R.id.workouts_arms:
                 i.putExtra("workout", "arms");
                 startActivity(i);
-                break;
-            case R.id.workouts_view_current:
-                //TODO show progress in dialog
                 break;
                 default:
                     Log.i("WORKOUTS", "Unknown choice, setting default: chest");

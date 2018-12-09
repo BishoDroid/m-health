@@ -64,4 +64,17 @@
         <item>zC3nLlEvin4</item>
         <item>M_uPvGrMx_o</item>
     </string-array>
+
+    <string-array name="cardio_names">
+        <item>Tricep Pushdown</item>
+        <item>Skull Crushers</item>
+        <item>Dumbbell Hammer Curl</item>
+        <item>Arm Curl</item>
+    </string-array>
+    <string-array name="cardio_values">
+        <item>LAMcpzODU</item>
+        <item>d_KZxkY_0cM</item>
+        <item>zC3nLlEvin4</item>
+        <item>M_uPvGrMx_o</item>
+    </string-array>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private User user;
     private AppSettings settings;
     private DBAccess db;
+    private Button logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         music.setOnClickListener(this);
         cardio = findViewById(R.id.main_cardio);
         cardio.setOnClickListener(this);
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(this);
 
         welcome.setText("Welcome to M-Health, "+user.getName());
     }
@@ -83,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 cardio.putExtra("userId", user.getId());
                 startActivity(cardio);
                 break;
+            case R.id.logout:
+                settings.setId(-1);
+                startActivity(new Intent(MainActivity.this, Login.class));
+                    break;
                 default:
                     Log.d("MAIN", "Not registered for clickListener");
         }

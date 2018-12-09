@@ -31,9 +31,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView image;
     private EditText email, password, age, weight, height, gender;
-    private ProgressBar progress;
-    private TextView percent;
-    private Button editSave;
+    private TextView progress;
+    private TextView txt;
+    private Button editSave, showWorkouts;
     private User user;
     private List<Workout> workouts;
 
@@ -49,8 +49,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         db.open();
         user = db.getUserDetails(settings.getId());
-        workouts = db.getWorkoutsWithDate(null, user.getId());
-        int doneWorkouts = getDoneWorkouts(workouts);
+        workouts = db.getWorkouts( user.getId());
+
         db.close();
 
         image = findViewById(R.id.profile_image);
@@ -73,14 +73,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         gender.setText(user.getGender());
 
         progress = findViewById(R.id.profile_workout_progress);
-        progress.setProgress(0);
-        percent = findViewById(R.id.profile_prog_percent);
+        progress.setText(String.valueOf(workouts.size()));
 
-        int done = workouts.size() > 0 ? (doneWorkouts / workouts.size()) * 100 : 0;
-        percent.setText(done+"% of your daily workout");
+        txt = findViewById(R.id.profile_prog_percent);
+        txt.setText("Workouts today");
+
 
         editSave = findViewById(R.id.profile_edit_save);
         editSave.setOnClickListener(this);
+
+        showWorkouts = findViewById(R.id.profile_show_workouts);
+        showWorkouts.setOnClickListener(this);
     }
 
     @Override
@@ -91,6 +94,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.profile_edit_save:
                 editOrSave();
+                break;
+            case R.id.profile_show_workouts:
+                startActivity(new Intent(Profile.this, MyWorkouts.class));
+                break;
+
         }
     }
 
@@ -99,13 +107,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private int getDoneWorkouts(List<Workout> workouts){
-        int done = 0;
-        for(Workout w : workouts){
-            if(w.isDone()) done++;
-        }
-        return done;
-    }
+
     private void editOrSave() {
         editMode = !editMode;
         performAction(editMode);
@@ -119,8 +121,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             password.setEnabled(true);
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             age.setEnabled(true);
+            age.setText(String.valueOf(user.getAge()));
             height.setEnabled(true);
+            height.setText(String.valueOf(user.getHeight()));
             weight.setEnabled(true);
+            weight.setText(String.valueOf(user.getWeight()));
             gender.setEnabled(true);
         } else {
             editSave.setText("Edit");
@@ -128,8 +133,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             password.setEnabled(false);
             password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             age.setEnabled(false);
+            age.setText(user.getAge()+" Yrs");
             height.setEnabled(false);
+            height.setText(user.getHeight()+" cm");
             weight.setEnabled(false);
+            weight.setText(user.getWeight()+" kgs");
             gender.setEnabled(false);
         }
     }

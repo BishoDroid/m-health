@@ -1,6 +1,6 @@
 package bishodroid.com.gymapp.model;
 
-public class Workout {
+public class Workout{
 
     private int id;
     private String title;
