@@ -32,7 +32,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private ImageView image;
     private EditText email, password, age, weight, height, gender;
     private TextView progress;
-    private TextView txt;
+    private TextView txt, bmi;
     private Button editSave, showWorkouts;
     private User user;
     private List<Workout> workouts;
@@ -77,6 +77,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         txt = findViewById(R.id.profile_prog_percent);
         txt.setText("Workouts today");
+        bmi = findViewById(R.id.provile_bmi);
+        int num= user.getWeight() / (user.getHeight()/100);
+        bmi.setText(String.valueOf(num));
 
 
         editSave = findViewById(R.id.profile_edit_save);

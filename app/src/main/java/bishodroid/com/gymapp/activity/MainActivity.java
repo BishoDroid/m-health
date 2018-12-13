@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         user = db.getUserDetails(settings.getId());
         db.close();
 
-        Log.d("MAIN",user.toString());
 
         welcome = findViewById(R.id.textView2);
         profile = findViewById(R.id.main_profile);

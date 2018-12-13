@@ -32,7 +32,6 @@ public class Splash extends AppCompatActivity {
                 } finally {
                     if(settings.isFirstRun()){
                         startActivity(new Intent(Splash.this, Login.class));
-                        settings.setFirstRun(false);
                         finish();
                     }else{
                         startActivity(new Intent(Splash.this, MainActivity.class));
