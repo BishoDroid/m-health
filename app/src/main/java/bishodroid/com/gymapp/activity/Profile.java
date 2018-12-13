@@ -78,9 +78,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         txt = findViewById(R.id.profile_prog_percent);
         txt.setText("Workouts today");
         bmi = findViewById(R.id.provile_bmi);
-        int num= user.getWeight() / (user.getHeight()/100);
-        bmi.setText(String.valueOf(num));
-
+        calculateBmi();
 
         editSave = findViewById(R.id.profile_edit_save);
         editSave.setOnClickListener(this);
@@ -89,11 +87,19 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         showWorkouts.setOnClickListener(this);
     }
 
+
+    private void calculateBmi(){
+        float weight = user.getWeight();
+        float height = (float) (user.getHeight() * .01);
+
+        float num = weight / (height * height);
+        bmi.setText("BMI:"+String.valueOf(num).substring(0,4));
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile_image:
-                addImage();
                 break;
             case R.id.profile_edit_save:
                 editOrSave();
@@ -103,11 +109,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
-    }
-
-
-    private void addImage() {
-
     }
 
 
@@ -130,6 +131,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             weight.setEnabled(true);
             weight.setText(String.valueOf(user.getWeight()));
             gender.setEnabled(true);
+            calculateBmi();
         } else {
             editSave.setText("Edit");
             email.setEnabled(false);
@@ -142,6 +144,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             weight.setEnabled(false);
             weight.setText(user.getWeight()+" kgs");
             gender.setEnabled(false);
+            calculateBmi();
         }
     }
 
