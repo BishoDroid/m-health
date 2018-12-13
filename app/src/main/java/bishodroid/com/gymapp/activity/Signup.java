@@ -1,14 +1,13 @@
 package bishodroid.com.gymapp.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import bishodroid.com.gymapp.R;
@@ -18,7 +17,6 @@ import bishodroid.com.gymapp.model.User;
 public class Signup extends AppCompatActivity implements View.OnClickListener{
 
     private TextInputEditText name, email, password, age, height, weight;
-    private Spinner goal;
     private RadioGroup gender;
     private Button signup, login;
     private DBAccess db;
@@ -35,7 +33,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         height = findViewById(R.id.signup_height);
         weight = findViewById(R.id.signup_weight);
 
-        goal = findViewById(R.id.spinner);
         gender = findViewById(R.id.signup_gender);
         signup = findViewById(R.id.signup_signup);
         signup.setOnClickListener(this);
